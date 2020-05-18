@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "./node_modules/.bin/env-cmd -f ./config/dev.env node src/app.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "secure": false,
   "author": "",
