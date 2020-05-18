@@ -1,0 +1,14 @@
+.selected{
+    font-weight: bold;
+}
+
+/*body{
+}*/
+
+.button{
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+}
