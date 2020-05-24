@@ -2,7 +2,6 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 
 import Cookies from "js-cookie";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CreateAccPage from "../components/pages/CreateAccPage";
 import CreateTaskPage from "../components/pages/CreateTaskPage";
@@ -30,7 +29,7 @@ export default class AppRouter extends React.Component {
         return (  
             <Router history={history}>
                 <div>
-                    <Header handleLogout={this.handleLogout} loggedIn={this.checkLoginStatus()}/>
+                    {/* <Header loggedIn={this.checkLoginStatus()}/> */}
                     <Switch>
                         <UnauthenticatedRoute path="/" component={MainPage} exact={true} appProps={this.checkLoginStatus()} />
                         <UnauthenticatedRoute path="/createAcc" component={CreateAccPage} appProps={this.checkLoginStatus()} />

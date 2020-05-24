@@ -6,7 +6,7 @@ const taskRouter = require("./routes/task")
 const cookieParser = require("cookie-parser")
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 const path = require("path")
 const publicPath = path.join(__dirname, "..", "client", "build")

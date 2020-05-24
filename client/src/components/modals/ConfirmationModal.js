@@ -1,13 +1,20 @@
 import React from "react";
-import Modal from "react-modal";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const ConfirmationModal = (props) => {
     
     return(
-        <Modal isOpen={props.isOpen} ariaHideApp={false} onRequestClose={props.handleNo}>
-            {props.message && <p>{props.message}</p>}
-            <button type="button" className="button" onClick={props.handleYes}>Ano</button>
-            <button type="button" className="button" onClick={props.handleNo}>Ne</button>
+
+        <Modal show={props.show} onHide={props.handleNo}>
+            <Modal.Header closeButton>
+                <Modal.Title>{props.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{props.message}</Modal.Body>
+            <Modal.Footer>
+                <Button variant="dark" onClick={props.handleYes}>Ano</Button>
+                <Button variant="dark" onClick={props.handleNo}>Ne</Button>
+            </Modal.Footer>
         </Modal>
     )
 };

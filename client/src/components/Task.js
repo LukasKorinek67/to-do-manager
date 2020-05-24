@@ -2,6 +2,10 @@ import React from "react";
 import history from "../history/history";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import InformationModal from "./modals/InformationModal";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 export default class Task extends React.Component {
 
@@ -71,19 +75,27 @@ constructor(props) {
 
     render() {
         return (
-            <div>
-                <p>{this.props.task.description}, {this.props.task.completed? "SPLNĚNO!" : "NESPLNĚNO!"}</p>
-                <button id="editTask" type="button" className="button" onClick={this.editTask}>Upravit úkol</button>
-                <button id="deleteTask" type="button" className="button" onClick={this.deleteTask}>Odstranit úkol</button>
+              <div className="task">
+                <Container>
+                  <Row>
+                    <Col className="task_text"><p>{this.props.task.completed? "✅" : "❌"} {this.props.task.description}</p></Col>
+                    <Col>
+                      <Button size="sm" variant="outline-dark" onClick={this.editTask}>Upravit</Button><span> </span>
+                      <Button variant="outline-dark" size="sm" onClick={this.deleteTask}>Odstranit 🗑</Button>
+                    </Col>
+                  </Row>
+                </Container>
                 
                 <ConfirmationModal
-                  isOpen={this.state.confirmationModalOpen}
+                  show={this.state.confirmationModalOpen}
+                  title={"Odstranění úkolu"}
                   message={"Opravdu chcete odstranit tento úkol?"}
                   handleYes={this.handleModalOptionYes} 
                   handleNo={this.handleModalOptionNo}
                 />
                 <InformationModal
-                  isOpen={this.state.informationModalOpen}
+                  show={this.state.informationModalOpen}
+                  title={"Odstranění úkolu"}
                   message={"Úkol úspěšně odstraněn"}
                   handleOk={this.handleModalOptionClose} 
                 />

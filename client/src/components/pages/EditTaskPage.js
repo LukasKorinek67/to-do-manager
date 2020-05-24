@@ -1,6 +1,13 @@
 import React from "react";
 import history from "../../history/history";
+import Header from "../Header";
 import InformationModal from "../modals/InformationModal";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 
 export default class EditTaskPage extends React.Component {
   constructor(props){
@@ -94,20 +101,34 @@ export default class EditTaskPage extends React.Component {
   render() {
     return (
       <div>
-        <button type="button" className="button" onClick={this.getBack}>Zpět</button>
-        <h2>Upravit úkol</h2>
-        <label htmlFor="description"><b>Název úkolu</b></label>
-        <input id="description" type="text" placeholder="Description" name="description" defaultValue={this.state.description} required></input>
-        <label>
-        <input id="completed" type="checkbox" name="done" defaultChecked={this.state.completed} /> Splněno
-        </label>
-        <button type="button" className="button" onClick={this.editTask}>Upravit úkol</button>
-        {this.state.error && <p>{this.state.error}</p>}
-        <InformationModal
-          isOpen={this.state.informationModalOpen}
-          message={"Úkol úspěšně upraven"}
-          handleOk={this.handleModalOptionClose} 
-        />
+        <Header />
+          <div className="main_content">
+            <Card className="pageCard">
+              <Container>
+                <Button variant="light" size="sm" type="button" onClick={this.getBack}>Zpět</Button>
+                <h2>Upravit úkol</h2>
+                <Form>
+                  <Form.Group as={Row} controlId="description">
+                    <Form.Label column sm="2">Název úkolu</Form.Label>
+                    <Col sm="10">
+                    <Form.Control type="text" placeholder="Název" defaultValue={this.state.description} />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group controlId="completed">
+                    <Form.Check type="checkbox" label="Splněno" defaultChecked={this.state.completed} />
+                  </Form.Group>
+                  {this.state.error && <p className="text-danger">{this.state.error}</p>}
+                  <Button variant="dark" type="button" onClick={this.editTask}>Upravit úkol</Button>
+                </Form>
+                <InformationModal
+                  show={this.state.informationModalOpen}
+                  title={"Úprava úkolu"}
+                  message={"Úkol úspěšně upraven"}
+                  handleOk={this.handleModalOptionClose} 
+                />
+              </Container>
+            </Card>
+          </div>
       </div>
     );
   }

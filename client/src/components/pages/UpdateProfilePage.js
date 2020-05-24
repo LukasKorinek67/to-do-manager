@@ -2,7 +2,12 @@ import React from "react";
 import Cookie from "js-cookie";
 import history from "../../history/history";
 import DeleteAccountButton from "../DeleteAccountButton";
+import Header from "../Header";
 import InformationModal from "../modals/InformationModal";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 
 export default class TasksPage extends React.Component {
 
@@ -116,34 +121,49 @@ export default class TasksPage extends React.Component {
 
     render() {
         return (
-          <div>
-                <button type="button" className="button" onClick={this.getBack}>Zpět</button>
-                <h2>Upravit profil</h2>
-                <form>
-                    <div>
-                        <label htmlFor="username"><b>Přihlašovací jméno</b></label>
-                        <input id="username" type="text" placeholder="Přihlašovací jméno" name="username" defaultValue={Cookie.get("username")} required/>
-                        <button type="button" className="button" onClick={this.changeUsername}>Změnit přihlašovací jméno</button>
-                        {this.state.errorUsername && <p>{this.state.errorUsername}</p>}
+            <div>
+                <Header />
+                    <div className="main_content">
+                        <Card className="pageCard shadow-lg p-3 mb-5 bg-white rounded">
+                            <Container>
+                                <Button variant="light" size="sm" type="button" onClick={this.getBack} >Zpět</Button>
+                                <h2>Upravit profil</h2>
+                                <Card className="update_card">
+                                    <Form>
+                                        <Form.Group controlId="username">
+                                            <Form.Label>Přihlašovací jméno</Form.Label>
+                                            <Form.Control type="text" placeholder="Přihlašovací jméno" defaultValue={Cookie.get("username")}/>
+                                        </Form.Group>
+                                        {this.state.errorUsername && <p className="text-danger">{this.state.errorUsername}</p>}
+                                        <Button variant="dark" type="button" onClick={this.changeUsername}>Změnit přihlašovací jméno</Button>
+                                    </Form>
+                                </Card>
+                                <Card className="update_card">
+                                    <Form>
+                                        <Form.Group controlId="password">
+                                            <Form.Label>Heslo</Form.Label>
+                                            <Form.Control type="password" placeholder="Heslo" />
+                                        </Form.Group>
+                                        <Form.Group controlId="password-repeat">
+                                            <Form.Label>Potvrďte heslo</Form.Label>
+                                            <Form.Control type="password" placeholder="Heslo znovu" />
+                                        </Form.Group>
+                                        {this.state.errorPassword && <p className="text-danger">{this.state.errorPassword}</p>}
+                                        <Button variant="dark" type="button" onClick={this.changePassword}>Změnit heslo</Button>
+                                    </Form>
+                                </Card>
+                                <DeleteAccountButton />
+                                <div className="card_bottom"></div>
+                                <InformationModal
+                                show={this.state.informationModalOpen}
+                                title={"Změna údajů"}
+                                message={"Údaje úspěšně změněny"}
+                                handleOk={this.handleModalOptionClose} 
+                                />
+                            </Container>
+                        </Card>    
                     </div>
-                </form>
-                <form>
-                    <div>
-                        <label htmlFor="psw"><b>Heslo</b></label>
-                        <input id="password" type="password" placeholder="Heslo" name="psw" required/>
-                        <label htmlFor="psw-repeat"><b>Potvrďte heslo</b></label>
-                        <input id="password-repeat" type="password" placeholder="Heslo znovu" name="psw-repeat" required/>
-                        <button type="button" className="button" onClick={this.changePassword}>Změnit heslo</button>
-                        {this.state.errorPassword && <p>{this.state.errorPassword}</p>}
-                    </div>
-                </form>
-                <DeleteAccountButton />
-                <InformationModal
-                  isOpen={this.state.informationModalOpen}
-                  message={"Údaje úspěšně změněny"}
-                  handleOk={this.handleModalOptionClose} 
-                />
-          </div>
+            </div>
         );
     };
 }

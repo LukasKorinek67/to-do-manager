@@ -1,14 +1,44 @@
-.selected{
-    font-weight: bold;
+@import "./components/mainPage.css";
+@import "./components/cards.css";
+
+header {
+    padding: 15px 0px 15px 0px;
+    background-color: black;
 }
 
-/*body{
-}*/
+#header_dropdown {
+    margin-top: 10px;
+}
 
-.button{
-    cursor: pointer;
-    border: 1px solid #888888;
-    background: #888888;
-    color: white;
-    padding: 8px;
+footer {
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.main_content {   
+    padding: 0 20px;
+    background-color: white;
+}
+
+h2 {
+    padding-bottom: 25px;
+    padding-top: 20px;
+}
+
+.task {
+    margin-top: 15px;
+}
+
+.task_text {
+    margin-top: 3px;
+}
+
+#filter {
+    margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+    .text-sm-center {
+        text-align: center;
+    } 
 }

@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import history from "../../history/history";
+import Header from "../Header";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 
 export default class LoginPage extends React.Component {
   
@@ -15,7 +20,7 @@ export default class LoginPage extends React.Component {
   
   handleSuccessfulAuth() {
     window.location.reload()
-    history.push("/tasks");
+    //history.push("/tasks");
   }
 
   login = (e) => {
@@ -58,27 +63,47 @@ export default class LoginPage extends React.Component {
       });
     }
   }
+
+  getBack() {
+    history.push("/")
+  }
   
   render() {
     return (  
       <div>
-        <h2>Přihlášení</h2>
-        <form>
-          <label htmlFor="username"><b>Přihlašovací jméno</b></label>
-          <input id="username" type="text" placeholder="Přihlašovací jméno" name="username" required/>
-          <label htmlFor="psw"><b>Heslo</b></label>
-          <input id="password" type="password" placeholder="Heslo" name="psw" required/>
-          {this.state.error && <p>{this.state.error}</p>}
-          <div>
-            <button type="button" className="button" onClick={this.login}>Přihlásit</button>
+        <Header />
+          <div className="main_content">
+            <Card className="pageCard shadow-lg p-3 mb-5 bg-white rounded">
+              <Container>
+                <Button variant="light" size="sm" type="button" onClick={this.getBack} >Zpět</Button>
+                <h2>Přihlášení</h2>
+                <Form>
+                  <Form.Group controlId="username">
+                    <Form.Label>Přihlašovací jméno</Form.Label>
+                    <Form.Control type="text" placeholder="Přihlašovací jméno" />
+                    <Form.Text className="text-muted">
+                      Vaše údaje jsou zpracovány zabezpečeně.
+                    </Form.Text>
+                  </Form.Group>
+                  <Form.Group controlId="password">
+                    <Form.Label>Heslo</Form.Label>
+                    <Form.Control type="password" placeholder="Heslo" />
+                  </Form.Group>
+                  {this.state.error && <p className="text-danger">{this.state.error}</p>}
+                  <Button variant="dark" type="button" onClick={this.login}>Přihlásit se</Button>
+                  <div className="main_card_footer">
+                    <Card.Footer>
+                      <p>Nemáte vytvořený účet?</p>
+                      <Link to="/createAcc">
+                        <Button variant="outline-dark" type="button" >Vytvořit účet</Button>
+                      </Link>
+                    </Card.Footer>
+                  </div>
+                </Form>
+                <div className="card_bottom"></div>
+              </Container>
+            </Card>
           </div>
-          <div>
-          <p>Nemáte vytvořený účet?</p>
-            <Link to="/createAcc">
-              <button type="button" className="button">Vytvořit účet</button>
-            </Link>
-          </div>
-        </form>
       </div>
     )
   }

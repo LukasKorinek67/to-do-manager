@@ -1,6 +1,7 @@
 import React from "react";
 import Cookies from "js-cookie";
 import ConfirmationModal from "./modals/ConfirmationModal";
+import Button from "react-bootstrap/Button";
 
 export default class TasksPage extends React.Component {
 
@@ -50,10 +51,13 @@ export default class TasksPage extends React.Component {
     render() {
         return (
             <div>
-                {Cookies.get("loggedIn") && <button type="button" className="button" onClick={this.logout}>Odhlásit se</button>}
+                {Cookies.get("loggedIn") && <Button variant="dark" type="button" onClick={this.logout} >Odhlásit se</Button>}
+                
+
                 <ConfirmationModal
-                    isOpen={this.state.confirmationModalOpen}
-                    message="Opravdu se chcete odhlásit?"
+                    show={this.state.confirmationModalOpen}
+                    title={"Odhlášení"}
+                    message={"Opravdu se chcete odhlásit?"}
                     handleYes={this.handleModalOptionYes} 
                     handleNo={this.handleModalOptionNo}
                 />

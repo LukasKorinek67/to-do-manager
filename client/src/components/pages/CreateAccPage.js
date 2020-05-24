@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import history from "../../history/history";
+import Header from "../Header";
 import InformationModal from "../modals/InformationModal";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 
 export default class CreateAccPage extends React.Component {
   
@@ -27,7 +32,7 @@ export default class CreateAccPage extends React.Component {
         informationModalOpen: false,
     }))
     window.location.reload()
-    history.push("/tasks");
+    //history.push("/tasks");
 }
 
   signUp = () => {
@@ -81,34 +86,57 @@ export default class CreateAccPage extends React.Component {
       });
     }
   }
+
+  getBack() {
+    history.push("/")
+  }
   
   render() {
     return (
       <div>
-        <h2>Vytvořit účet</h2>
-        <form>
-          <label htmlFor="username"><b>Přihlašovací jméno</b></label>
-          <input id="username" type="text" placeholder="Přihlašovací jméno" name="username" required/>
-          <label htmlFor="psw"><b>Heslo</b></label>
-          <input id="password" type="password" placeholder="Heslo" name="psw" required/>
-          <label htmlFor="psw-repeat"><b>Potvrďte heslo</b></label>
-          <input id="password-repeat" type="password" placeholder="Heslo znovu" name="psw-repeat" required/>
-          {this.state.error && <p>{this.state.error}</p>}
-          <div>
-              <button type="button" className="button" onClick={this.signUp}>Vytvořit</button>
-          </div>
-          <div>
-            <p>Již máte vytvořený účet?</p>
-            <Link to="/login">
-              <button type="button" className="button">Přihlásit se</button>
-            </Link>
-          </div>
-        </form>
-        <InformationModal
-          isOpen={this.state.informationModalOpen}
-          message={"Váš profil byl úspěšně vytvořen"}
-          handleOk={this.handleModalOptionClose} 
-        />
+        <Header />
+        <div className="main_content">
+          <Card className="pageCard shadow-lg p-3 mb-5 bg-white rounded">
+            <Container>
+              <Button variant="light" size="sm" type="button" onClick={this.getBack} >Zpět</Button>
+              <h2>Vytvořit účet</h2>
+              <Form>
+                <Form.Group controlId="username">
+                  <Form.Label>Přihlašovací jméno</Form.Label>
+                  <Form.Control type="text" placeholder="Přihlašovací jméno" />
+                  <Form.Text className="text-muted">
+                    Vaše údaje jsou zpracovány zabezpečeně.
+                  </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="password">
+                  <Form.Label>Heslo</Form.Label>
+                  <Form.Control type="password" placeholder="Heslo" />
+                </Form.Group>
+                <Form.Group controlId="password-repeat">
+                  <Form.Label>Potvrďte heslo</Form.Label>
+                  <Form.Control type="password" placeholder="Heslo znovu" />
+                </Form.Group>
+                {this.state.error && <p className="text-danger">{this.state.error}</p>}
+                <Button variant="dark" type="button" onClick={this.signUp}>Vytvořit účet</Button>
+                <div className="main_card_footer">
+                  <Card.Footer>
+                    <p>Již máte vytvořený účet?</p>
+                    <Link to="/login">
+                      <Button variant="outline-dark" type="button" >Přihlásit se</Button>
+                    </Link>
+                  </Card.Footer>
+                </div>
+              </Form>
+              <InformationModal
+                show={this.state.informationModalOpen}
+                title={"Vytvoření profilu"}
+                message={"Váš profil byl úspěšně vytvořen"}
+                handleOk={this.handleModalOptionClose} 
+              />
+              <div className="card_bottom"></div>
+            </Container>
+          </Card>
+        </div>
       </div>
     )
   }

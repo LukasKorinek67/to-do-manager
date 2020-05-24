@@ -1,0 +1,27 @@
+.mainPage {
+    background-color: white;
+    background: url("/main_background.jpg");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainPage_card {
+    margin: 30px 0px 30px 0px;
+    padding: 30px 30px 30px 30px;
+}
+
+.mainPage_h1 {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 60px;
+}
+
+.mainPage_button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration: none
+}

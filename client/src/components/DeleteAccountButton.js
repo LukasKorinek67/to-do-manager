@@ -2,6 +2,7 @@ import React from "react";
 import Cookies from "js-cookie";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import InformationModal from "./modals/InformationModal";
+import Button from "react-bootstrap/Button";
 
 export default class TasksPage extends React.Component {
 
@@ -66,15 +67,17 @@ export default class TasksPage extends React.Component {
     render() {
         return (
             <div>
-                <button type="button" className="button" onClick={this.deleteAccount}>Smazat účet</button>
+                <Button variant="outline-danger" type="button" onClick={this.deleteAccount}>Smazat účet</Button>
                 <ConfirmationModal
-                  isOpen={this.state.confirmationModalOpen}
+                  show={this.state.confirmationModalOpen}
+                  title={"Odstranění účtu"}
                   message={"Opravdu chcete odstranit tento účet?"}
                   handleYes={this.handleModalOptionYes} 
                   handleNo={this.handleModalOptionNo}
                 />
                 <InformationModal
-                  isOpen={this.state.informationModalOpen}
+                  show={this.state.informationModalOpen}
+                  title={"Odstranění účtu"}
                   message={"Váš účet byl odstraněn"}
                   handleOk={this.handleModalOptionClose} 
                 />
