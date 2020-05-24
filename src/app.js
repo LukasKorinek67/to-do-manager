@@ -21,7 +21,7 @@ app.use("/api", taskRouter)
 app.use(express.static(publicPath))
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(publicPath + "index.html"));
+    res.sendFile(path.join(publicPath, "index.html"));
   });
 
 app.listen(port, () => {
