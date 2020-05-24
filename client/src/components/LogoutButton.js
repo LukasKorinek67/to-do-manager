@@ -53,7 +53,6 @@ export default class TasksPage extends React.Component {
             <div>
                 {Cookies.get("loggedIn") && <Button variant="dark" type="button" onClick={this.logout} >Odhlásit se</Button>}
                 
-
                 <ConfirmationModal
                     show={this.state.confirmationModalOpen}
                     title={"Odhlášení"}

@@ -11,14 +11,6 @@ import Row from "react-bootstrap/Row";
 
 export default class Header extends React.Component {
 
-  componentDidMount() {
-    Cookies.get("username");
-  }
-
-  componentDidUpdate() {
-    Cookies.get("username");
-  }
-
   updateProfile() {
     history.push("/updateProfile");
   }

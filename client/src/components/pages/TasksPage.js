@@ -72,7 +72,6 @@ export default class TasksPage extends React.Component {
 
                 {this.state.toDos && 
                 <div id="tasks">
-                  {/* <Card style={{ width: '18rem' }}> */}
                   <Card>
                     <ListGroup variant="flush">
                       {(this.state.filter === "all" && this.state.toDos) && this.state.toDos.map((toDo, index) => (
@@ -101,7 +100,6 @@ export default class TasksPage extends React.Component {
                 <p className="font-weight-lighter">Nemáte žádné nesplněné úkoly</p>}
 
                 <div className="card_bottom"></div>
-            
               </Container>
             </Card>
           </div>

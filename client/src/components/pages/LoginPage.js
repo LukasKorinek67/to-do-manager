@@ -20,7 +20,6 @@ export default class LoginPage extends React.Component {
   
   handleSuccessfulAuth() {
     window.location.reload()
-    //history.push("/tasks");
   }
 
   login = (e) => {

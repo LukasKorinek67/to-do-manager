@@ -69,7 +69,6 @@ export default class CreateTaskPage extends React.Component {
       <div>
         <Header />
           <div className="main_content">
-            {/* <Card className="pageCard shadow-lg p-3 mb-5 bg-white rounded"> */}
             <Card className="pageCard shadow-lg p-3 mb-5 bg-white rounded">
               <Container>
                 <Button variant="light" size="sm" type="button" onClick={this.getBack}>Zpět</Button>

@@ -32,7 +32,6 @@ export default class CreateAccPage extends React.Component {
         informationModalOpen: false,
     }))
     window.location.reload()
-    //history.push("/tasks");
 }
 
   signUp = () => {

@@ -29,7 +29,6 @@ export default class AppRouter extends React.Component {
         return (  
             <Router history={history}>
                 <div>
-                    {/* <Header loggedIn={this.checkLoginStatus()}/> */}
                     <Switch>
                         <UnauthenticatedRoute path="/" component={MainPage} exact={true} appProps={this.checkLoginStatus()} />
                         <UnauthenticatedRoute path="/createAcc" component={CreateAccPage} appProps={this.checkLoginStatus()} />
