@@ -33,6 +33,10 @@ h2 {
     margin-top: 3px;
 }
 
+.task_button {
+    margin-right: 5px;
+}
+
 #filter {
     margin-bottom: 16px;
 }

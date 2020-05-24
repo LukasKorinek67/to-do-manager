@@ -1,5 +1,6 @@
 import React from "react";
 import history from "../history/history";
+import TaskDoneButton from "./TaskDoneButton"
 import ConfirmationModal from "./modals/ConfirmationModal";
 import InformationModal from "./modals/InformationModal";
 import Button from "react-bootstrap/Button";
@@ -80,8 +81,11 @@ constructor(props) {
                   <Row>
                     <Col className="task_text"><p>{this.props.task.completed? "✅" : "❌"} {this.props.task.description}</p></Col>
                     <Col>
-                      <Button size="sm" variant="outline-dark" onClick={this.editTask}>Upravit</Button><span> </span>
-                      <Button variant="outline-dark" size="sm" onClick={this.deleteTask}>Odstranit 🗑</Button>
+                      <Row>
+                        <Button className="task_button" size="sm" variant="outline-dark" onClick={this.editTask}>Upravit</Button><span> </span>
+                        <Button className="task_button" variant="outline-dark" size="sm" onClick={this.deleteTask}>Odstranit 🗑</Button> <span> </span>
+                        {!(this.props.task.completed) && <TaskDoneButton task={this.props.task}/>}
+                      </Row>
                     </Col>
                   </Row>
                 </Container>
