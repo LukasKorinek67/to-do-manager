@@ -24,7 +24,6 @@ constructor(props) {
 }
 
     editTask() {
-        console.log("editTask " + this.props.task._id)
         const url = "/editTask/" + this.props.task._id;
         history.push(url)
     }
@@ -83,7 +82,7 @@ constructor(props) {
                     <Col>
                       <Row>
                         <Button className="task_button" size="sm" variant="outline-dark" onClick={this.editTask}>Upravit</Button><span> </span>
-                        <Button className="task_button" variant="outline-dark" size="sm" onClick={this.deleteTask}>Odstranit 🗑</Button> <span> </span>
+                        <Button className="task_button" variant="outline-danger" size="sm" onClick={this.deleteTask}>Odstranit 🗑</Button> <span> </span>
                         {!(this.props.task.completed) && <TaskDoneButton task={this.props.task}/>}
                       </Row>
                     </Col>

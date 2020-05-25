@@ -4,6 +4,7 @@ const userRouter = require("./routes/user")
 const taskRouter = require("./routes/task")
 
 const cookieParser = require("cookie-parser")
+const xss = require("xss-clean")
 
 const app = express()
 const port = process.env.PORT
@@ -13,7 +14,7 @@ const publicPath = path.join(__dirname, "..", "client", "build")
 
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-
+app.use(xss())
 app.use(express.json())
 app.use("/api", userRouter)
 app.use("/api", taskRouter)

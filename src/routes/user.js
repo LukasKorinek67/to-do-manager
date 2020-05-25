@@ -2,9 +2,10 @@ const express = require("express")
 const User = require("../mongoose-models/user")
 const auth = require("../middleware/auth")
 const router = new express.Router()
+var sanitize = require('mongo-sanitize');   //xss attacks
 
 router.post("/users", async (req, res) => {
-    const user = new User(req.body)
+    const user = new User(sanitize(req.body))
 
     try {
         await user.save()
@@ -20,7 +21,7 @@ router.post("/users", async (req, res) => {
 
 router.post("/users/login", async (req, res) => {
     try {
-        const user = await User.findByCredentials(req.body.username, req.body.password)
+        const user = await User.findByCredentials(sanitize(req.body.username), sanitize(req.body.password))
         const token = await user.generateAuthToken()
         res.cookie("auth_token", token)
         res.cookie("username", user.username)
@@ -51,7 +52,7 @@ router.get("/users/me", auth, async (req, res) => {
 })
 
 router.patch("/users/me", auth, async (req, res) => {
-    const updates = Object.keys(req.body)
+    const updates = Object.keys(sanitize(req.body))
     const allowedUpdates = ["username", "password"]
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 

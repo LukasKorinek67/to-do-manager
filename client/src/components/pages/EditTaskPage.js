@@ -36,7 +36,6 @@ export default class EditTaskPage extends React.Component {
       },
     }).then(response => response.json())
     .then(data => { 
-      console.log(data)
       this.loadTask(data)
     }).catch((error) => {
       console.error('Error:', error);
